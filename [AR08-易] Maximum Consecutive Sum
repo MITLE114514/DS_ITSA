@@ -1,0 +1,31 @@
+#pragma warning(disable:4996)  
+#pragma warning(disable:6031)  
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+ 
+#define MAX(X, Y) (X > Y ? X : Y)  
+#define INPUT_S 1024  
+#define ELEMT_S 100  
+  
+int main() {  
+    int elemt[ELEMT_S] = { 0 };  
+    int elemt_num = 0;  
+    int sub_sum = 0;  
+    int sub_end = 0;  
+    char input[INPUT_S] = { '\0' };  
+    while(scanf("%d", &elemt[elemt_num]) != EOF) {  
+        elemt_num++;  
+        if(getchar() == '\n')  
+            break;  
+    }  
+    sub_sum = elemt[0];  
+    sub_end = elemt[0];  
+    for(int i = 1; i < elemt_num; i++) {  
+        sub_end = MAX(elemt[i], sub_end + elemt[i]);  
+        sub_sum = MAX(sub_sum, sub_end);  
+    }  
+    printf("%d\n", sub_sum > 0 ? sub_sum : 0);  
+    getchar();  
+    exit(0);  
+}
