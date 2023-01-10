@@ -1,0 +1,84 @@
+#pragma warning(disable:4996)  
+#pragma warning(disable:6031)  
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+ 
+#define INPUT_S 1024  
+  
+void do_print(int** score, int size) {  
+    int max_score = -1;  
+    int row_idx = -1, col_idx = -1;  
+    int flag = 1;  
+    int* row = (int*)malloc(sizeof(int) * size);  
+    int* col = (int*)malloc(sizeof(int) * size);  
+    if(!row || !col || size <= 0) exit(1);  
+    memset(row, -1, sizeof(int) * size);  
+    memset(col, -1, sizeof(int) * size);  
+    for(int i = 0; i < size; i++) {  
+        max_score = -1;  
+        row_idx = -1;  
+        col_idx = -1;  
+        for(int r = 0; r < size; r++) {  
+            for(int c = 0; c < size; c++) {  
+                if(score[r][c] > max_score) {  
+                    for(int j = 0; j < i + 1; j++) {  
+                        if(r == row[j] || c == col[j])  
+                            flag = 0;  
+                    }  
+                    if(flag == 1) {  
+                        row_idx = r;  
+                        col_idx = c;  
+                        max_score = score[r][c];  
+                    }  
+                    flag = 1;  
+                }  
+            }  
+        }  
+        row[i] = row_idx;  
+        col[i] = col_idx;  
+        printf("boy %d pair with girl %d\n", row_idx + 1, col_idx + 1);  
+    }  
+}  
+  
+int main() {  
+    int score_s = 0;  
+    int row_i = 0, col_i = 0;  
+    int tmp_ele = 0;  
+    int flag = 0;  
+    char input[INPUT_S] = { '\0' };  
+    int** score = NULL;  
+    while(fgets(input, INPUT_S, stdin)) {  
+        if(flag == 0) {  
+            sscanf(input, "%d", &score_s);  
+            if(score_s <= 0) exit(1);  
+            score = (int**)malloc(sizeof(int*) * score_s);  
+            if(!score) exit(1);  
+            for(int i = 0; i < score_s; i++) {  
+                score[i] = (int*)malloc(sizeof(int) * score_s);  
+                if(!score[i]) exit(1);  
+            }  
+            row_i = 0;  
+            col_i = 0;  
+            flag++;  
+        }  
+        else if(flag == 1 && score) {  
+            sscanf(input, "%d", &tmp_ele);  
+            score[row_i][col_i] = tmp_ele;  
+            if(col_i == score_s - 1) {  
+                if(row_i == score_s - 1) {  
+                    do_print(score, score_s);  
+                    score_s = 0;  
+                    flag--;  
+                    free(score);  
+                }  
+                else {  
+                    row_i++;  
+                    col_i = 0;  
+                }  
+            }  
+            else  
+                col_i++;  
+        }  
+    }  
+}
