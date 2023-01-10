@@ -1,0 +1,18 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    int input;
+    while(scanf("%d", &input) != EOF) {
+        int output = 0;
+        for(int i = input; i > 2; i--) {
+            if(i % 3 == 0) {
+                output += i;
+            }
+        }
+        printf("%d\n", output);
+    }
+}
