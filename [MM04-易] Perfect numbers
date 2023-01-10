@@ -1,0 +1,44 @@
+#pragma warning(disable:4996)   
+#pragma warning(disable:6031)   
+#include <stdio.h>   
+#include <stdlib.h>   
+#include <string.h>   
+#include <ctype.h>   
+ 
+#define MAX(X, Y) (X > Y ? X : Y)   
+#define INPUT_S 4096  
+  
+int main() {  
+    char* input = NULL;  
+    int input_num = 0;  
+    double input_tmp = 0;  
+    scanf("%d", &input_num);  
+    input = (char*)calloc(input_num, 1);  
+    for(int i = 0; i < input_num; i++) {  
+        double sum = 1;  
+        scanf("%lf", &input_tmp);  
+        double input_tmp_sqrt = input_tmp / 2;  
+        double sqrt_tmp = 0;  
+        while(input_tmp_sqrt != sqrt_tmp) {  
+            sqrt_tmp = input_tmp_sqrt;  
+            input_tmp_sqrt = (input_tmp / sqrt_tmp + sqrt_tmp) / 2;  
+        }  
+        for(double j = 2; j < (long)input_tmp_sqrt + 1; j++) {  
+            if((long)input_tmp % (long)j == 0) {  
+                sum += j + input_tmp / j;  
+            }  
+        }  
+        if(sum == input_tmp)  
+            input[i] = '1';  
+    }  
+    for(int i = 0; i < input_num; i++) {  
+        if(input[i] == '1') {  
+            printf("perfect\n");  
+        }  
+        else {  
+            printf("nonperfect\n");  
+        }  
+    }  
+    getchar(); getchar();  
+    exit(0);  
+}
