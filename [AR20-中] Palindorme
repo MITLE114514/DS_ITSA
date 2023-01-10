@@ -1,0 +1,26 @@
+#pragma warning(disable:4996)  
+#pragma warning(disable:6031)  
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+ 
+#define MAX(X, Y) (X > Y ? X : Y)  
+#define INPUT_S 1024  
+  
+int main() {  
+    char input[INPUT_S] = { '\0' };  
+    char cmp_input[INPUT_S] = { '\0' };  
+    int idx = 0;  
+    scanf("%s", input);  
+    idx = 0;  
+    for(int i = strlen(input) - 1; i >= 0; i--, idx++)  
+        cmp_input[i] = input[idx];  
+    if(strcmp(input, cmp_input) == 0)  
+        printf("yes\n");  
+    else  
+        printf("no\n");  
+    input[0] = '\0';  
+    cmp_input[0] = '\0';  
+    getchar();  
+    exit(0);  
+}
