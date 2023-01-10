@@ -1,0 +1,32 @@
+#pragma warning(disable:4996)  
+#pragma warning(disable:6031)  
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+#include <ctype.h>  
+ 
+#define MAX(X, Y) (X > Y ? X : Y)  
+#define INPUT_S 1024  
+  
+int main() {  
+    char input[INPUT_S] = { '\0' };  
+    char buf[INPUT_S] = { '\0' };  
+    while(fgets(input, INPUT_S, stdin)) {  
+        sscanf(input, "%[^\n]", buf);  
+        for(int i = 0; i < strlen(buf); i++) {  
+            if(isalpha(buf[i])) {  
+                if((int)buf[i] + 13 > 122 ||  
+                   (int)buf[i] <= 90 && (int)buf[i] >= 78)  
+                    buf[i] = (int)buf[i] - 13;  
+                else {  
+                    buf[i] = (int)buf[i] + 13;  
+                }  
+            }  
+        }  
+        printf("%s\n", buf);  
+        input[0] = '\0';  
+        buf[0] = '\0';  
+    }  
+    getchar();  
+    exit(0);  
+}
