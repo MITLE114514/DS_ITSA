@@ -1,0 +1,17 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    double x, y;
+    while(scanf("%lf %lf", &x, &y) != EOF) {
+        if(pow(x, 2) + pow(y, 2) <= pow(100, 2)) {
+            printf("inside\n");
+        }
+        else {
+            printf("outside\n");
+        }
+    }
+}
