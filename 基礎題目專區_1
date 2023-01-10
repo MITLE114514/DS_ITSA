@@ -1,0 +1,100 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char input[5];
+    scanf("%s", input);
+    int num[4];
+    for(int i = 0; i < 4; i++) {
+        num[i] = input[i] - '0';
+    }
+    char output[5][30];
+    for(int i = 0; i < 5; i++) {
+        output[i][0] = '\0';
+    }
+    for(int i = 0; i < 4; i++) {
+        if(num[i] == 1) {
+            strcat(output[0], "    *");
+            strcat(output[1], "    *");
+            strcat(output[2], "    *");
+            strcat(output[3], "    *");
+            strcat(output[4], "    *");
+        }
+        else if(num[i] == 2) {
+            strcat(output[0], "*****");
+            strcat(output[1], "    *");
+            strcat(output[2], "*****");
+            strcat(output[3], "*    ");
+            strcat(output[4], "*****");
+        }
+        else if(num[i] == 3) {
+            strcat(output[0], "*****");
+            strcat(output[1], "    *");
+            strcat(output[2], "*****");
+            strcat(output[3], "    *");
+            strcat(output[4], "*****");
+        }
+        else if(num[i] == 4) {
+            strcat(output[0], "*   *");
+            strcat(output[1], "*   *");
+            strcat(output[2], "*****");
+            strcat(output[3], "    *");
+            strcat(output[4], "    *");
+        }
+        else if(num[i] == 5) {
+            strcat(output[0], "*****");
+            strcat(output[1], "*    ");
+            strcat(output[2], "*****");
+            strcat(output[3], "    *");
+            strcat(output[4], "*****");
+        }
+        else if(num[i] == 6) {
+            strcat(output[0], "*    ");
+            strcat(output[1], "*    ");
+            strcat(output[2], "*****");
+            strcat(output[3], "*   *");
+            strcat(output[4], "*****");
+        }
+        else if(num[i] == 7) {
+            strcat(output[0], "*****");
+            strcat(output[1], "    *");
+            strcat(output[2], "    *");
+            strcat(output[3], "    *");
+            strcat(output[4], "    *");
+        }
+        else if(num[i] == 8) {
+            strcat(output[0], "*****");
+            strcat(output[1], "*   *");
+            strcat(output[2], "*****");
+            strcat(output[3], "*   *");
+            strcat(output[4], "*****");
+        }
+        else if(num[i] == 9) {
+            strcat(output[0], "*****");
+            strcat(output[1], "*   *");
+            strcat(output[2], "*****");
+            strcat(output[3], "    *");
+            strcat(output[4], "    *");
+        }
+        else if(num[i] == 0) {
+            strcat(output[0], "*****");
+            strcat(output[1], "*   *");
+            strcat(output[2], "*   *");
+            strcat(output[3], "*   *");
+            strcat(output[4], "*****");
+        }
+        //
+        if(i != 3) {
+            strcat(output[0], " ");
+            strcat(output[1], " ");
+            strcat(output[2], " ");
+            strcat(output[3], " ");
+            strcat(output[4], " ");
+        }
+    }
+    for(int i = 0; i < 5; i++) {
+        printf("%s\n", output[i]);
+    }
+}
