@@ -1,0 +1,14 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    int b_h, b_m, e_h, e_m;
+    scanf("%d %d", &b_h, &b_m);
+    scanf("%d %d", &e_h, &e_m);
+    int time = (e_h - b_h) * 60 + e_m - b_m;
+    int cost = (time / 30) * 30 + (time > 120 ? ((time - 120) / 30) * 10 : 0) + (time > 240 ? ((time - 240) / 30) * 20 : 0);
+    printf("%d\n", cost);
+}
