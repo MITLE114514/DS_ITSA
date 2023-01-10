@@ -1,0 +1,18 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    int a, b;
+    while(scanf("%d %d", &a, &b) != EOF) {
+        int output = 0;
+        while(b != 0) {
+            int tmp = b;
+            b = a % b;
+            a = tmp;
+        }
+        printf("%d\n", a);
+    }
+}
