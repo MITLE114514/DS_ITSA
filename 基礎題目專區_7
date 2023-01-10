@@ -1,0 +1,36 @@
+#pragma warning( disable: 6031 4996 )
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+int main() {
+    int num;
+    scanf("%d", &num);
+    int* output_r = malloc(sizeof(int) * num);
+    int* output_i = malloc(sizeof(int) * num);
+    for(int i = 0; i < num; i++) {
+        char op[1];
+        int a_r, a_i, b_r, b_i;
+        scanf("%s %d %d %d %d", op, &a_r, &a_i, &b_r, &b_i);
+        if(op[0] == '+') {
+            output_r[i] = a_r + b_r;
+            output_i[i] = a_i + b_i;
+        }
+        else if(op[0] == '-') {
+            output_r[i] = a_r - b_r;
+            output_i[i] = a_i - b_i;
+        }
+        else if(op[0] == '*') {
+            output_r[i] = a_r * b_r - a_i * b_i;
+            output_i[i] = a_i * b_r + a_r * b_i;
+        }
+        else if(op[0] == '/') {
+            output_r[i] = (a_r * b_r + a_i * b_i) / (b_i * b_i + b_r * b_r);
+            output_i[i] = (a_i * b_r - a_r * b_i) / (b_i * b_i + b_r * b_r);
+        }
+    }
+    for(int i = 0; i < num; i++) {
+        printf("%d %d\n", output_r[i], output_i[i]);
+    }
+}
