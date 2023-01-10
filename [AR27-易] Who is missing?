@@ -1,0 +1,39 @@
+#pragma warning(disable:4996)   
+#pragma warning(disable:6031)   
+#include <stdio.h>   
+#include <stdlib.h>   
+#include <string.h>   
+#include <ctype.h>   
+ 
+#define MAX(X, Y) (X > Y ? X : Y)   
+#define INPUT_S 700000  
+  
+int main() {  
+    int input = 0;  
+    char input_str[INPUT_S] = { '\0' };  
+    int student_n = 0;  
+    int print_f = 0;  
+    char student[70001] = { '\0' };  
+    scanf("%d", &student_n);  
+    while(getchar() != '\n') {}  
+    fgets(input_str, INPUT_S, stdin);  
+    char* tok = strtok(input_str, " ");  
+    while(tok) {  
+        student[atoi(tok)] = '1';  
+        tok = strtok(NULL, " ");  
+    }  
+    for(int i = 1; i <= student_n; i++) {  
+        if(student[i] == '\0') {  
+            if(print_f != 0)  
+                printf(" ");  
+            else  
+                print_f++;  
+            printf("%d", i);  
+        }  
+        if(i == student_n)  
+            if(print_f == 1)  
+                printf("\n");  
+    }  
+    getchar();  
+    exit(0);  
+}
